@@ -31,13 +31,15 @@ export async function GET(request: NextRequest) {
     }),
   });
 
+  if (!res.ok) {
+    return new Response("Failed to fetch access token", {
+      status: res.status,
+    });
+  }
+
   const { access_token, refresh_token } = await res.json();
-
   const body = JSON.stringify({ access_token, refresh_token });
-
   const response = new NextResponse(body, { status: 200 });
-
   response.cookies.delete(stateKey);
-
   return response;
 }
