@@ -9,6 +9,7 @@ export async function GET() {
     redirect_uri: process.env.SPOTIFY_REDIRECT_URI || "",
     state: state,
   });
+
   const redirectUrl = `https://accounts.spotify.com/authorize?${searchParams.toString()}`;
   return Response.redirect(redirectUrl);
 }
