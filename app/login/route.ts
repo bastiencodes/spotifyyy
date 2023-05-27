@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 export async function GET() {
   const state = generateRandomString(16);
   const scope = "user-top-read";
@@ -11,7 +13,7 @@ export async function GET() {
   });
 
   const redirectUrl = `https://accounts.spotify.com/authorize?${searchParams.toString()}`;
-  return Response.redirect(redirectUrl);
+  redirect(redirectUrl);
 }
 
 const generateRandomString = function (length: number) {
