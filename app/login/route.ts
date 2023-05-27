@@ -18,5 +18,7 @@ export async function GET() {
   });
   const redirectUrl = `https://accounts.spotify.com/authorize?${searchParams.toString()}`;
 
-  return NextResponse.redirect(redirectUrl).cookies.set(stateKey, state);
+  const response = NextResponse.redirect(redirectUrl);
+  response.cookies.set(stateKey, state);
+  return response;
 }
